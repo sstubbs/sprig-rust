@@ -1,5 +1,6 @@
 use std::ops::Range;
 use gtmpl_value::Value;
+use std::collections::HashMap;
 
 // Add 1
 gtmpl_fn!(
@@ -95,12 +96,19 @@ gtmpl_fn!(
     #[doc = r#"Create a sequence until a number."#]
     fn until(n: u64) -> Result<Vec<Value>, String> {
         let range = Range { start: 0, end: n };
+//        let mut map = HashMap::new();
+//        for v in range {
+//            map.insert(
+//                v.to_string(),
+//                v.to_string(),
+//            );
+//        };
+//        Ok(map)
+
         let mut vec = Vec::new();
-
         for v in range {
-            vec.push(Value::from(v));
+            vec.push(Value::from(v.to_string()));
         }
-
         Ok(vec)
     }
 );
@@ -171,9 +179,23 @@ mod test {
     fn test_until() {
 
         let mut vec = Vec::new();
-        vec.push(0);
-        vec.push(1);
-        vec.push(2);
+        vec.push(0.to_string());
+        vec.push(1.to_string());
+        vec.push(2.to_string());
+
+//        let mut map = HashMap::new();
+//        map.insert(
+//            1.to_string(),
+//            1.to_string(),
+//        );
+//        map.insert(
+//            2.to_string(),
+//            2.to_string(),
+//        );
+//        map.insert(
+//            3.to_string(),
+//            3.to_string(),
+//        );
 
 
         test_fn!(until, vval!(3), vec);
