@@ -63,6 +63,7 @@ pub static SPRIG: &[(&'static str, Func)] = &[
     ("mod_f64", math::mod_f64 as Func),
     ("mul_i64", math::mul_i64 as Func),
     ("mul_f64", math::mul_f64 as Func),
+    ("until", math::until as Func),
     // defaults
     ("default", defaults::default as Func),
 ];

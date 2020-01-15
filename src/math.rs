@@ -1,3 +1,6 @@
+use std::ops::Range;
+use gtmpl_value::Value;
+
 // Add 1
 gtmpl_fn!(
     #[doc = r#"Add 1 to a value."#]
@@ -88,6 +91,17 @@ gtmpl_fn!(
     }
 );
 
+gtmpl_fn!(
+    #[doc = r#"Create a sequence until a number."#]
+    fn until(n: u64) -> Result<Value, String> {
+        let range = Range { start: 0, end: n };
+        let vec: Vec<u64> = range.collect();
+        let v: Value = vec.into();
+        Ok(v)
+    }
+);
+
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -146,6 +160,20 @@ mod test {
     #[test]
     fn test_mod_f64() {
         test_fn!(mod_f64, vval!(8.0,2.5), "0.5");
+    }
+
+    // Until
+    #[test]
+    fn test_until() {
+
+        let mut vec = Vec::new();
+        vec.push(0);
+        vec.push(1);
+        vec.push(2);
+
+        let v: Value = vec.into();
+
+        test_fn!(until, vval!(3), v);
     }
 
 }
