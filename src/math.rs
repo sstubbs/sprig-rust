@@ -93,10 +93,11 @@ gtmpl_fn!(
 
 gtmpl_fn!(
     #[doc = r#"Create a sequence until a number."#]
-    fn until(n: u64) -> Result<Vec<u64>, String> {
+    fn until(n: u64) -> Result<Value, String> {
         let range = Range { start: 0, end: n };
         let vec: Vec<u64> = range.collect();
-        Ok(vec)
+        let v = Value::from(vec);
+        Ok(v)
     }
 );
 
